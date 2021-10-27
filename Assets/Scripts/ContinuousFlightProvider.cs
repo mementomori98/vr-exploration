@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 
-public class FlightController : MonoBehaviour
+public class ContinuousFlightProvider : MonoBehaviour
 {
 
     public InputActionReference action;
