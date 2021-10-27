@@ -76,6 +76,10 @@ PrefabInstance:
       value: GrassBlock
       objectReference: {fileID: 0}
     - target: {fileID: 8209373954725929968, guid: 503adf0c861bf43439826776c4d4e50b, type: 3}
+      propertyPath: m_TagString
+      value: block
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209373954725929968, guid: 503adf0c861bf43439826776c4d4e50b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}

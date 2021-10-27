@@ -922,7 +922,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "GoUp",
+                    "name": "Flight",
                     "type": "Button",
                     "id": "91bbb209-b170-4e22-b4ef-49aed123f173",
                     "expectedControlType": "Button",
@@ -957,7 +957,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Continuous Move",
-                    "action": "GoUp",
+                    "action": "Flight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

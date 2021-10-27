@@ -10,6 +10,7 @@ TagManager:
   - weapon
   - spawner
   - block
+  - menuitem
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DirtBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 179837749998448738, guid: c2eed4aebb7c2894581d2290a63fdf6b, type: 3}
+      propertyPath: m_TagString
+      value: block
+      objectReference: {fileID: 0}
     - target: {fileID: 179837749998448740, guid: c2eed4aebb7c2894581d2290a63fdf6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

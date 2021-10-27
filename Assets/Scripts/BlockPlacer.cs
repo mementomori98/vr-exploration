@@ -15,9 +15,9 @@ public class BlockPlacer : MonoBehaviour
 
     private GameObject _hoveredObject;
     private Material _originalMaterial;
-    
+
     private GameObject _cross;
-    
+
     private void Update()
     {
         if (Raycast(out var hit))
@@ -30,7 +30,7 @@ public class BlockPlacer : MonoBehaviour
                     _hoveredObject = default;
                     _originalMaterial = default;
                 }
-                
+
                 _hoveredObject = hit.collider.gameObject;
                 _originalMaterial = _hoveredObject.GetComponent<MeshRenderer>().material;
                 _hoveredObject.GetComponent<MeshRenderer>().material = selectMaterial;
@@ -54,31 +54,44 @@ public class BlockPlacer : MonoBehaviour
                 _hoveredObject = default;
                 _originalMaterial = default;
             }
-            
+
             if (_cross != default)
                 Destroy(_cross);
         }
-        
     }
 
     private void HandleTriggerPressed(InputAction.CallbackContext context)
     {
         if (!Raycast(out var hit))
             return;
-        
+
         if (hit.collider.gameObject.CompareTag("block"))
-        {
+            HandleBlockPlaced(hit);
+        if (hit.collider.gameObject.CompareTag("menuitem"))
+            HandleMenuPressed(hit.collider.gameObject);
+    }
+
+    private void HandleBlockPlaced(RaycastHit hit)
+    {
+        if (prefab == default)
+            Destroy(hit.collider.gameObject);
+        else
             Instantiate(prefab,
                 hit.collider.gameObject.transform.position + hit.normal.normalized,
                 hit.collider.gameObject.transform.rotation);
-        }
+    }
+
+    private void HandleMenuPressed(GameObject o)
+    {
+        var menuItem = o.GetComponent<MenuItem>();
+        prefab = menuItem.itemPrefab;
     }
 
     private bool Raycast(out RaycastHit hit)
     {
         return Physics.Raycast(transform.position, transform.rotation * Vector3.forward, out hit);
     }
-    
+
     private void Awake()
     {
         triggerPressed.action.started += HandleTriggerPressed;
