@@ -9,6 +9,8 @@ using UnityEngine.InputSystem;
 public class BlockPlacer : MonoBehaviour
 {
     public InputActionReference triggerPressed;
+    public InputActionReference gripPressed;
+    
     public GameObject prefab;
     public GameObject crossPrefab;
     public Material selectMaterial;
@@ -71,6 +73,14 @@ public class BlockPlacer : MonoBehaviour
             HandleMenuPressed(hit.collider.gameObject);
     }
 
+    private void HandleGripPressed(InputAction.CallbackContext context)
+    {
+        if (!Raycast(out var hit))
+            return;
+        if (hit.collider.gameObject.CompareTag("block"))
+            Destroy(hit.collider.gameObject);
+    }
+
     private void HandleBlockPlaced(RaycastHit hit)
     {
         if (prefab == default)
@@ -95,11 +105,13 @@ public class BlockPlacer : MonoBehaviour
     private void Awake()
     {
         triggerPressed.action.started += HandleTriggerPressed;
+        gripPressed.action.started += HandleGripPressed;
     }
 
     private void OnDestroy()
     {
         triggerPressed.action.started -= HandleTriggerPressed;
+        gripPressed.action.started -= HandleGripPressed;
         if (_cross != default)
             Destroy(_cross);
     }
