@@ -47,6 +47,12 @@ public class BlockPlacer : MonoBehaviour
                 _cross.transform.position = position;
                 _cross.transform.rotation = rotation;
             }
+            
+            
+            _cross.transform.localScale = new Vector3(1, .01f, 1) * 
+                Mathf.Pow((hit.point - transform.position).magnitude, 0.7f) / 30;
+            
+            
         }
         else
         {
@@ -99,7 +105,10 @@ public class BlockPlacer : MonoBehaviour
 
     private bool Raycast(out RaycastHit hit)
     {
-        return Physics.Raycast(transform.position, transform.rotation * Vector3.forward, out hit);
+        return Physics.Raycast(
+            transform.position,
+            transform.rotation * Vector3.forward,
+            out hit);
     }
 
     private void Awake()
